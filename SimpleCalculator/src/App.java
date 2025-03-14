@@ -22,6 +22,14 @@ public class App {
         double secondNumber = scanner.nextDouble();
 
 
+        if (firstNumber.isEmpty && secondNumber.isEmpty) {
+            System.out.println("Empty input! Try typing a number(s)");
+        } else {
+
+            
+
+        }
+
 
 
 
