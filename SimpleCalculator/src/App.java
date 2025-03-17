@@ -12,7 +12,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         UserService userService = new UserService();
-        userService.startCalculator();
+        UserService.startCalculator();
 
 
 
