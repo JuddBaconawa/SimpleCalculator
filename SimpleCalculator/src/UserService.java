@@ -34,6 +34,22 @@ public class UserService {
 		}
 	}
 
+
+	public void startCalculator() {
+		System.out.println("Welcome to the calculator!");
+		while (true) { 
+			System.out.println("Enter the first number: ");
+			double firstNumber = scanner.nextDouble();
+
+			System.out.println("Enter an arithmetic expression: ");
+			char arithmeticSymbol = scanner.next().charAt(0);
+
+			System.out.println("Enter the second number's value: ");
+			double secondNumber = scanner.nextDouble();
+
+			
+		}
+	}
 	
 	
 }
