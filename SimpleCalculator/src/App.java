@@ -2,9 +2,6 @@
 
 
 //imports
-import java.util.Scanner;
-
-//main class - App
 public class App {
 
 
@@ -12,7 +9,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         UserService userService = new UserService();
-        UserService.startCalculator();
+        userService.startCalculator();
 
 
 
