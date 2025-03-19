@@ -52,6 +52,13 @@ public class UserService {
 
 			double result = performCalculations(firstNumber, arithmeticSymbol, secondNumber);
 			System.out.println("Results: " + result);
+
+			System.out.println("Perform another operation? (Y/N)");
+			String choice = scanner.next();
+			if (!choice.equalsIgnoreCase("yes")) {
+				System.out.println("Goodbye!");
+				break;
+			}
 		}
 	}
 	
