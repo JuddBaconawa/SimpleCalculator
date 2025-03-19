@@ -36,7 +36,10 @@ public class UserService {
 
 
 	public void startCalculator() {
+		//prompt to tell user that they are using the calculator app
 		System.out.println("Welcome to the calculator!");
+
+		//while statement which prompts the user to input a first number, second number, and arithmetic symbol
 		while (true) { 
 			System.out.println("Enter the first number: ");
 			double firstNumber = scanner.nextDouble();
@@ -47,7 +50,8 @@ public class UserService {
 			System.out.println("Enter the second number's value: ");
 			double secondNumber = scanner.nextDouble();
 
-			
+			double result = performCalculations(firstNumber, arithmeticSymbol, secondNumber);
+			System.out.println("Results: " + result);
 		}
 	}
 	
