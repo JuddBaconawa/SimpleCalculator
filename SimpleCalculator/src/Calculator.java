@@ -39,8 +39,9 @@ public class Calculator implements ActionListener{
         textField = new JTextField();
         textField.setBounds(50, 25, 300, 50);
         textField.setFont(myFont);
-        textField.setEditable(false);
+        textField.setEditable(false);       //so the user cant type in
 
+        // text label for the buttons
         addButton = new JButton("+");
         subButton = new JButton("-");
         multButton = new JButton("*");
@@ -49,6 +50,16 @@ public class Calculator implements ActionListener{
         equButton = new JButton("=");
         delButton = new JButton("Del");
         clrButton = new JButton("Clr");
+
+        // Add action listeners to the function buttons
+        functionButtons[0] = addButton;
+        functionButtons[1] = subButton;
+        functionButtons[2] = multButton;
+        functionButtons[3] = divButton;
+        functionButtons[4] = decButton;
+        functionButtons[5] = equButton;
+        functionButtons[6] = delButton;
+        functionButtons[7] = clrButton;
     
 
         frame.add(textField);
