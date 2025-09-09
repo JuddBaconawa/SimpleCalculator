@@ -13,6 +13,8 @@ public class Calculator implements ActionListener{
     // GUI components: Buttons for numbers and operations + text field
     JFrame frame;
     JTextField textField;
+
+    // Arrays to hold number and function buttons
     JButton[] numberButtons = new JButton[10];
     JButton[] functionButtons = new JButton[8];
 
@@ -48,8 +50,8 @@ public class Calculator implements ActionListener{
         divButton = new JButton("/");
         decButton = new JButton(".");
         equButton = new JButton("=");
-        delButton = new JButton("Del");
-        clrButton = new JButton("Clr");
+        delButton = new JButton("Delete");
+        clrButton = new JButton("Clear");
 
         // Add action listeners to the function buttons
         functionButtons[0] = addButton;
