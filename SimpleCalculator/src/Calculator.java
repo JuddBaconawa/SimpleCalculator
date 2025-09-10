@@ -15,8 +15,8 @@ public class Calculator implements ActionListener{
     JTextField textField;
 
     // Arrays to hold number and function buttons
-    JButton[] numberButtons = new JButton[10];
-    JButton[] functionButtons = new JButton[8];
+    JButton[] numberButtons = new JButton[10];  // Numbers 0-9
+    JButton[] functionButtons = new JButton[8]; // 8 function buttons
 
     // Function buttons: add, subtract, multiply, divide, decimal, equals, delete, clear
     JButton addButton, subButton, multButton, divButton;
@@ -35,13 +35,17 @@ public class Calculator implements ActionListener{
 
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // frame.setBackground(Color.CYAN);
+        frame.getContentPane().setBackground(Color.CYAN);
         frame.setSize(450, 550);
         frame.setLayout(null);
 
         textField = new JTextField();
-        textField.setBounds(50, 25, 300, 50);
+        textField.setBounds(50, 25, 350, 50);
+        textField.setBackground(Color.CYAN);
         textField.setFont(myFont);
-        textField.setEditable(false);       //so the user cant type in
+        // textField.setEditable(false);       //so the user cant type in
+        textField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
 
         // text label for the buttons
         addButton = new JButton("+");
@@ -66,13 +70,11 @@ public class Calculator implements ActionListener{
         // For loop to add action listeners
         for(int i=0; i<8; i++) {
             functionButtons[i].addActionListener(this);
-            functionButtons[i].setFont(myFont);
+            functionButtons[i].setFont(myFont); // use the custom font 
             functionButtons[i].setFocusable(false);
         }
 
         
-    
-
         frame.add(textField);
         frame.setVisible(true);
 
