@@ -74,7 +74,16 @@ public class Calculator implements ActionListener{
             functionButtons[i].setFocusable(false);
         }
 
-        
+        // For loop to create number buttons 0-9
+        for(int i = 0; i<10; i++) {
+            numberButtons[i] = new JButton(String.valueOf(i));  // convert int to string
+            numberButtons[i].addActionListener(this);
+            numberButtons[i].setFont(myFont);
+            numberButtons[i].setFocusable(false);
+        }
+
+
+        // Add components to the frame
         frame.add(textField);
         frame.setVisible(true);
 
