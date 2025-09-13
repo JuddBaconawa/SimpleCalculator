@@ -20,7 +20,7 @@ public class Calculator implements ActionListener{
 
     // Function buttons: add, subtract, multiply, divide, decimal, equals, delete, clear
     JButton addButton, subButton, multButton, divButton;
-    JButton decButton, equButton, delButton, clrButton;
+    JButton decButton, equButton, delButton, clrButton, negButton;
     JPanel panel;
 
     // Creates and uses a custom font
@@ -156,5 +156,36 @@ public class Calculator implements ActionListener{
             operator = '/';
             textField.setText("");
         }
+        if(e.getSource() == equButton) {
+            num2 = Double.parseDouble(textField.getText());
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                }
+                textField.setText(String.valueOf(result));
+                num1 = result; // To continue the calculation with the result
+        }
+        if(e.getSource() == clrButton) {
+            textField.setText("");
+        }
+        if(e.getSource() == delButton) {
+            String string = textField.getText();
+            textField.setText("");
+            for(int i=0; i<string.length()-1; i++) {
+                textField.setText(textField.getText()+string.charAt(i));
+            }
+        }
+
+
     }
 }
