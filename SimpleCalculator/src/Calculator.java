@@ -21,7 +21,7 @@ public class Calculator implements ActionListener{
     // Function buttons: add, subtract, multiply, divide, decimal, equals, delete, clear
     JButton addButton, subButton, multButton, divButton;
     JButton decButton, equButton, delButton, clrButton, negButton;
-    JPanel panel;
+    JPanel panel;   // Panel to hold buttons in a grid layout
 
     // Creates and uses a custom font
     Font myFont = new Font("Ink Free", Font.BOLD, 30);
@@ -67,6 +67,19 @@ public class Calculator implements ActionListener{
         functionButtons[6] = delButton;
         functionButtons[7] = clrButton;
 
+        // =================Color Customization================
+        // Arithmetic Symbol Buttons color
+        addButton.setBackground(new Color(255, 153, 51));
+        subButton.setBackground(new Color(255, 153, 51));
+        multButton.setBackground(new Color(255, 153, 51));
+        divButton.setBackground(new Color(255, 153, 51));
+
+        // Number Buttons color
+        
+
+        // functionButtons.setBackground(new Color(255, 153, 51));
+
+
         // For loop to add action listeners
         for(int i=0; i<8; i++) {
             functionButtons[i].addActionListener(this);
@@ -86,10 +99,12 @@ public class Calculator implements ActionListener{
         delButton.setBounds(50, 430, 145, 50);
         clrButton.setBounds(205, 430, 145, 50);
 
+        // Create a panel to hold the buttons in a grid layout
         panel = new JPanel();
         panel.setBounds(50, 100, 350, 300);
         panel.setLayout(new GridLayout(4, 4, 10, 10));
-        panel.setBackground(Color.GRAY);
+        panel.setBackground(Color.WHITE);
+        // panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Add a border to the panel
 
         panel.add(numberButtons[1]);
         panel.add(numberButtons[2]);
