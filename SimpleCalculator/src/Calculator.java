@@ -24,7 +24,7 @@ public class Calculator implements ActionListener{
     JPanel panel;   // Panel to hold buttons in a grid layout
 
     // Creates and uses a custom font
-    Font myFont = new Font("Ink Free", Font.BOLD, 30);
+    Font myFont = new Font("Open Sans", Font.BOLD, 30);
 
     // Variables to store the numbers
     double num1=0, num2=0, result=0;
@@ -36,13 +36,14 @@ public class Calculator implements ActionListener{
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // frame.setBackground(Color.CYAN);
-        frame.getContentPane().setBackground(Color.CYAN);
+        frame.getContentPane().setBackground(new Color(169, 169, 169));
         frame.setSize(450, 550);
         frame.setLayout(null);
 
         textField = new JTextField();
         textField.setBounds(50, 25, 350, 50);
-        textField.setBackground(Color.CYAN);
+        textField.setBackground(new Color(169, 169, 169));
+        textField.setForeground(Color.LIGHT_GRAY);
         textField.setFont(myFont);
         // textField.setEditable(false);       //so the user cant type in
         textField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
@@ -93,6 +94,8 @@ public class Calculator implements ActionListener{
             numberButtons[i].addActionListener(this);
             numberButtons[i].setFont(myFont);
             numberButtons[i].setFocusable(false);
+            numberButtons[i].setBackground(new Color(171, 171, 171));
+            numberButtons[i].setForeground(new Color(151, 151, 151));
         }
 
         // Set bounds for "delete" and "clear" buttons
@@ -102,7 +105,7 @@ public class Calculator implements ActionListener{
         // Create a panel to hold the buttons in a grid layout
         panel = new JPanel();
         panel.setBounds(50, 100, 350, 300);
-        panel.setLayout(new GridLayout(4, 4, 10, 10));
+        panel.setLayout(new GridLayout(4, 4, 1, 1));
         panel.setBackground(Color.WHITE);
         // panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Add a border to the panel
 
