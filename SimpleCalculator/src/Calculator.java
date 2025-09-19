@@ -37,11 +37,11 @@ public class Calculator implements ActionListener{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // frame.setBackground(Color.CYAN);
         frame.getContentPane().setBackground(new Color(169, 169, 169));
-        frame.setSize(450, 550);
+        frame.setSize(450, 575);
         frame.setLayout(null);
 
         textField = new JTextField();
-        textField.setBounds(50, 25, 350, 50);
+        textField.setBounds(50, 25, 350, 80);
         textField.setBackground(new Color(169, 169, 169));
         textField.setForeground(Color.LIGHT_GRAY);
         textField.setFont(myFont);
@@ -49,14 +49,14 @@ public class Calculator implements ActionListener{
         textField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
 
         // text label for the buttons
-        addButton = new JButton("+");
-        subButton = new JButton("-");
-        multButton = new JButton("*");
-        divButton = new JButton("/");
-        decButton = new JButton(".");
-        equButton = new JButton("=");
-        delButton = new JButton("Delete");
-        clrButton = new JButton("Clear");
+        addButton = new RoundedButton("+", 20);
+        subButton = new RoundedButton("-", 25);
+        multButton = new RoundedButton("*", 30);
+        divButton = new RoundedButton("/", 45);
+        decButton = new RoundedButton(".", 50);
+        equButton = new RoundedButton("=", 60);
+        delButton = new RoundedButton("Del", 65);
+        clrButton = new RoundedButton("C", 70);
 
         // Add action listeners to the function buttons
         functionButtons[0] = addButton;
@@ -71,6 +71,7 @@ public class Calculator implements ActionListener{
         // =================Color Customization================
         // Arithmetic Symbol Buttons color
         addButton.setBackground(new Color(255, 153, 51));
+        addButton.setForeground(Color.LIGHT_GRAY);
         subButton.setBackground(new Color(255, 153, 51));
         multButton.setBackground(new Color(255, 153, 51));
         divButton.setBackground(new Color(255, 153, 51));
@@ -90,7 +91,7 @@ public class Calculator implements ActionListener{
 
         // For loop to create number buttons 0-9
         for(int i = 0; i<10; i++) {
-            numberButtons[i] = new JButton(String.valueOf(i));  // convert int to string
+            numberButtons[i] = new RoundedButton(String.valueOf(i), 75);  // convert int to string
             numberButtons[i].addActionListener(this);
             numberButtons[i].setFont(myFont);
             numberButtons[i].setFocusable(false);
@@ -99,14 +100,14 @@ public class Calculator implements ActionListener{
         }
 
         // Set bounds for "delete" and "clear" buttons
-        delButton.setBounds(50, 430, 145, 50);
-        clrButton.setBounds(205, 430, 145, 50);
+        delButton.setBounds(80, 480, 145, 50);
+        clrButton.setBounds(235, 480, 145, 50);
 
         // Create a panel to hold the buttons in a grid layout
         panel = new JPanel();
-        panel.setBounds(50, 100, 350, 300);
+        panel.setBounds(50, 140, 325, 300);
         panel.setLayout(new GridLayout(4, 4, 1, 1));
-        panel.setBackground(Color.WHITE);
+        panel.setBackground(new Color(169, 169, 239));       // color of the panel
         // panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Add a border to the panel
 
         panel.add(numberButtons[1]);
