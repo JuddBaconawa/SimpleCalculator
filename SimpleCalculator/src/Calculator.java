@@ -20,7 +20,7 @@ public class Calculator implements ActionListener{
 
     // Function buttons: add, subtract, multiply, divide, decimal, equals, delete, clear
     JButton addButton, subButton, multButton, divButton;
-    JButton decButton, equButton, delButton, clrButton, negButton;
+    JButton percentageButton, posNegButton, decButton, equButton, delButton, clrButton, negButton;
     JPanel panel;   // Panel to hold buttons in a grid layout
 
     // Creates and uses a custom font
@@ -57,6 +57,10 @@ public class Calculator implements ActionListener{
         equButton = new RoundedButton("=", 60);
         delButton = new RoundedButton("Del", 65);
         clrButton = new RoundedButton("C", 70);
+        percentageButton = new RoundedButton("%", 75);
+        posNegButton = new RoundedButton("(-/+)", 75);
+
+
 
         // Add action listeners to the function buttons
         functionButtons[0] = addButton;
@@ -80,6 +84,7 @@ public class Calculator implements ActionListener{
         
 
         // functionButtons.setBackground(new Color(255, 153, 51));
+        panel.set
 
 
         // For loop to add action listeners
@@ -100,32 +105,36 @@ public class Calculator implements ActionListener{
         }
 
         // Set bounds for "delete" and "clear" buttons
-        delButton.setBounds(80, 480, 145, 50);
-        clrButton.setBounds(235, 480, 145, 50);
+        // delButton.setBounds(80, 480, 145, 50);
+        // clrButton.setBounds(235, 480, 145, 50);
 
         // Create a panel to hold the buttons in a grid layout
         panel = new JPanel();
-        panel.setBounds(50, 140, 325, 300);
-        panel.setLayout(new GridLayout(4, 4, 1, 1));
+        panel.setBounds(50, 190, 325, 300);
+        panel.setLayout(new GridLayout(5, 4, 1, 1));
         panel.setBackground(new Color(169, 169, 239));       // color of the panel
         // panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Add a border to the panel
 
+        panel.add(clrButton);
+        panel.add(posNegButton);
+        panel.add(percentageButton);
+        panel.add(addButton);
         panel.add(numberButtons[1]);
         panel.add(numberButtons[2]);
         panel.add(numberButtons[3]);
-        panel.add(addButton);
+        panel.add(subButton);
         panel.add(numberButtons[4]);
         panel.add(numberButtons[5]);
         panel.add(numberButtons[6]);
-        panel.add(subButton);
+        panel.add(multButton);
         panel.add(numberButtons[7]);
         panel.add(numberButtons[8]);
         panel.add(numberButtons[9]);
-        panel.add(multButton);
+        panel.add(divButton);
         panel.add(decButton);
         panel.add(numberButtons[0]);
         panel.add(equButton);
-        panel.add(divButton);
+        
 
 
 
