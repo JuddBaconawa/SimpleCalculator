@@ -41,9 +41,10 @@ public class Calculator implements ActionListener{
         frame.setLayout(null);
 
         textField = new JTextField();
-        textField.setBounds(50, 25, 350, 80);
+        textField.setBounds(50, 25, 350, 160);
         textField.setBackground(new Color(169, 169, 169));
         textField.setForeground(Color.LIGHT_GRAY);
+        // textField.setBorder();
         textField.setFont(myFont);
         // textField.setEditable(false);       //so the user cant type in
         textField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
