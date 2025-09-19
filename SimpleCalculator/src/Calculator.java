@@ -131,8 +131,8 @@ public class Calculator implements ActionListener{
 
         // Add components to the frame
         frame.add(panel);
-        frame.add(delButton);
-        frame.add(clrButton);
+        // frame.add(delButton);
+        // frame.add(clrButton);
         frame.add(textField);
         frame.setVisible(true);
 
