@@ -26,7 +26,8 @@ public class Calculator implements ActionListener{
 
     // Creates and uses a custom font
     Font myFont = new Font("Open Sans", Font.BOLD, 30);
-    Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 80);
+    Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 60);
+    Font historyDisplayPanelFont = new Font("Sans Serif", Font.BOLD, 30);
 
     // Variables to store the numbers
     double num1=0, num2=0, result=0;
@@ -45,16 +46,22 @@ public class Calculator implements ActionListener{
 
         // Text Field to display history and results 
         historyField = new JTextField();
-        history
+        historyField.setBounds(0, 4, 344, 80);
+        historyField.setFont(historyDisplayPanelFont);
+        historyField.setBackground(new Color(6, 28, 41));
+        historyField.setBorder(BorderFactory.createEmptyBorder());
+        historyField.setForeground(new Color(255, 153, 51));
+        historyField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
+        historyField.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
 
         // Text field to display numbers and results
         textField = new JTextField();
-        textField.setBounds(0, 25, 344, 80);
+        textField.setBounds(0, 85, 344, 80);
         textField.setFont(displayPanelFont);
-        textField.setBackground(new Color(169, 169, 169));
-        textField.setForeground(Color.LIGHT_GRAY);
-        // textField.setBorder();
-        textField.setFont(myFont);
+        textField.setBackground(new Color(6, 28, 41));
+        textField.setForeground(new Color(66, 217, 200));
+        textField.setBorder(BorderFactory.createEmptyBorder());
+        textField.setFont(displayPanelFont);
         textField.setEditable(false);       //so the user cant type in
         textField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
 
@@ -65,8 +72,8 @@ public class Calculator implements ActionListener{
         divButton = new RoundedButton("/", 15);
         decButton = new RoundedButton(".", 15);
         equButton = new RoundedButton("=", 15);
-        delButton = new RoundedButton("Del", 15);
-        clrButton = new RoundedButton("C", 15);
+        delButton = new RoundedButton("C", 15);
+        clrButton = new RoundedButton("A/C", 15);
         percentageButton = new RoundedButton("%", 15);
         posNegButton = new RoundedButton("-/+", 15);
 
@@ -88,14 +95,21 @@ public class Calculator implements ActionListener{
         // =================Color Customization================
         // Arithmetic Symbol Buttons color
         addButton.setBackground(new Color(255, 153, 51));
-        addButton.setForeground(Color.LIGHT_GRAY);
+        addButton.setForeground(Color.white);
         subButton.setBackground(new Color(255, 153, 51));
+        subButton.setForeground(Color.WHITE);
         multButton.setBackground(new Color(255, 153, 51));
+        multButton.setForeground(new Color(44, 140, 153));
         divButton.setBackground(new Color(255, 153, 51));
+        divButton.setForeground(new Color(66, 217, 200));
+        
 
         // ================== Size Customization =================
-        addButton.setPreferredSize(new Dimension(80, 50));
-        equButton.setPreferredSize(new Dimension(160, 50));
+
+        // Font
+        clrButton.setFont(new Font("Sans Serif", Font.BOLD, 10));
+        
+        // equButton.setPreferredSize(new Dimension(160, 50));
         
 
         // functionButtons.setBackground(new Color(255, 153, 51));
@@ -148,7 +162,9 @@ public class Calculator implements ActionListener{
         panel.add(divButton);
         panel.add(decButton);
         panel.add(numberButtons[0]);
+        panel.add(delButton);
         panel.add(equButton);
+        
         
 
 
@@ -157,6 +173,7 @@ public class Calculator implements ActionListener{
         frame.add(panel);
         // frame.add(delButton);
         // frame.add(clrButton);
+        frame.add(historyField);
         frame.add(textField);
         frame.setVisible(true);
 
