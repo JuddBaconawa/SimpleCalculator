@@ -95,13 +95,15 @@ public class Calculator implements ActionListener{
         // =================Color Customization================
         // Arithmetic Symbol Buttons color
         addButton.setBackground(new Color(255, 153, 51));
-        addButton.setForeground(Color.white);
+        addButton.setForeground(new Color (6, 28, 41));
         subButton.setBackground(new Color(255, 153, 51));
         subButton.setForeground(Color.WHITE);
         multButton.setBackground(new Color(255, 153, 51));
         multButton.setForeground(new Color(44, 140, 153));
         divButton.setBackground(new Color(255, 153, 51));
         divButton.setForeground(new Color(66, 217, 200));
+        equButton.setBackground(new Color(255, 153, 51));
+        equButton.setForeground(new Color(6, 28, 41));
         
 
         // ================== Size Customization =================
