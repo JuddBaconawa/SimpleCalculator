@@ -39,7 +39,7 @@ public class Calculator implements ActionListener{
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // frame.setBackground(Color.CYAN);
-        frame.getContentPane().setBackground(new Color(6, 28, 41));
+        frame.getContentPane().setBackground(new Color(2, 7, 11));
         // frame.setBorder(1);
         frame.setSize(360, 575);
         frame.setLayout(null);
@@ -48,7 +48,7 @@ public class Calculator implements ActionListener{
         historyField = new JTextField();
         historyField.setBounds(0, 4, 344, 80);
         historyField.setFont(historyDisplayPanelFont);
-        historyField.setBackground(new Color(6, 28, 41));
+        historyField.setBackground(new Color(3, 14, 21));
         historyField.setBorder(BorderFactory.createEmptyBorder());
         historyField.setForeground(new Color(255, 153, 51));
         historyField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
@@ -58,7 +58,7 @@ public class Calculator implements ActionListener{
         textField = new JTextField();
         textField.setBounds(0, 85, 344, 80);
         textField.setFont(displayPanelFont);
-        textField.setBackground(new Color(6, 28, 41));
+        textField.setBackground(new Color(2, 7, 11));
         textField.setForeground(new Color(66, 217, 200));
         textField.setBorder(BorderFactory.createEmptyBorder());
         textField.setFont(displayPanelFont);
@@ -123,7 +123,23 @@ public class Calculator implements ActionListener{
             functionButtons[i].addActionListener(this);
             functionButtons[i].setFont(myFont); // use the custom font 
             functionButtons[i].setFocusable(false);
+            functionButtons[i].setBackground(new Color(3, 14, 21));
+            functionButtons[i].setForeground(new Color(255, 255, 255));
         }
+
+
+        // =================Color Customization================
+        // Arithmetic Symbol Buttons color
+        addButton.setBackground(new Color(66, 217, 200));
+        addButton.setForeground(new Color (6, 28, 41));
+        subButton.setBackground(new Color(147, 22, 33));
+        subButton.setForeground(new Color(6, 28, 41));
+        multButton.setBackground(new Color(147, 22, 33));
+        multButton.setForeground(new Color(6, 28, 41));
+        divButton.setBackground(new Color(255, 153, 51));
+        divButton.setForeground(new Color(6, 28, 41));
+        equButton.setBackground(new Color(255, 153, 51));
+        equButton.setForeground(new Color(6, 28, 41));
 
         // For loop to create number buttons 0-9
         for(int i = 0; i<10; i++) {
@@ -131,7 +147,7 @@ public class Calculator implements ActionListener{
             numberButtons[i].addActionListener(this);
             numberButtons[i].setFont(myFont);
             numberButtons[i].setFocusable(false);
-            numberButtons[i].setBackground(new Color(40, 70, 75));
+            numberButtons[i].setBackground(new Color(3, 14, 21));
             numberButtons[i].setForeground(new Color(151, 151, 151));
         }
 
@@ -146,7 +162,7 @@ public class Calculator implements ActionListener{
         panel = new JPanel();
         panel.setBounds(5, 185, 335, 300);
         panel.setLayout(new GridLayout(5, 4, 1, 1));
-        panel.setBackground(new Color(6, 28, 41));       // color of the panel
+        panel.setBackground(new Color(3, 14, 21));       // color of the panel
         // panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Add a border to the panel
 
         panel.add(clrButton);
