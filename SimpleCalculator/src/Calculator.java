@@ -38,6 +38,7 @@ public class Calculator implements ActionListener{
 
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // frame.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         // frame.setBackground(Color.CYAN);
         frame.getContentPane().setBackground(new Color(2, 7, 11));
         // frame.setBorder(1);
@@ -48,7 +49,7 @@ public class Calculator implements ActionListener{
         historyField = new JTextField();
         historyField.setBounds(0, 4, 344, 80);
         historyField.setFont(historyDisplayPanelFont);
-        historyField.setBackground(new Color(3, 14, 21));
+        historyField.setBackground(new Color(2, 7, 11));
         historyField.setBorder(BorderFactory.createEmptyBorder());
         historyField.setForeground(new Color(255, 153, 51));
         historyField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
@@ -163,8 +164,8 @@ public class Calculator implements ActionListener{
         panel = new JPanel();
         panel.setBounds(10, 190, 325, 300);
         panel.setLayout(new GridLayout(5, 4, 20, 8));
-        panel.setBackground(new Color(3, 14, 21));       // color of the panel
-        // panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Add a border to the panel
+        panel.setBackground(new Color(2, 7, 11));       // color of the panel
+        // panel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Add a border to the panel
 
         panel.add(clrButton);
         panel.add(posNegButton);
@@ -213,30 +214,36 @@ public class Calculator implements ActionListener{
         for(int i=0; i<10; i++) {
             if(e.getSource() == numberButtons[i]) {
                 textField.setText(textField.getText().concat(String.valueOf(i)));
+                historyField.setText(historyField.getText() + String.valueOf(i));
             }
         }
         if(e.getSource() == decButton) {
             textField.setText(textField.getText().concat("."));
+            historyField.setText(historyField.getText().concat("."));
         }
         if(e.getSource() == addButton) {
             num1 = Double.parseDouble(textField.getText());
             operator = '+';
+            historyField.setText(historyField.getText().concat(" + "));
             textField.setText("");
         }
         if(e.getSource() == subButton) {
             num1 = Double.parseDouble(textField.getText());
             operator = '-';
             textField.setText("");
+            historyField.setText(historyField.getText().concat(" - "));
         }
         if(e.getSource() == multButton) {
             num1 = Double.parseDouble(textField.getText());
             operator = '*';
+            historyField.setText(historyField.getText().concat(" * "));
             textField.setText("");
         }
         if(e.getSource() == divButton) {
             num1 = Double.parseDouble(textField.getText());
             operator = '/';
             textField.setText("");
+            historyField.setText(historyField.getText().concat(" / "));
         }
         if(e.getSource() == equButton) {
             num2 = Double.parseDouble(textField.getText());
@@ -255,16 +262,25 @@ public class Calculator implements ActionListener{
                     break;
                 }
                 textField.setText(String.valueOf(result));
+                historyField.setText(historyField.getText() + " = " + result);  // to show full expression
                 num1 = result; // To continue the calculation with the result
         }
         if(e.getSource() == clrButton) {
             textField.setText("");
+            historyField.setText(historyField.getText().concat(""));
         }
         if(e.getSource() == delButton) {
             String string = textField.getText();
             textField.setText("");
             for(int i=0; i<string.length()-1; i++) {
                 textField.setText(textField.getText()+string.charAt(i));
+                historyField.setText(historyField.getText()+string.charAt(i));
+            }
+
+            // Remove last character from historyField as well
+            String hist = historyField.getText();
+            if(hist.length() > 0) {
+                historyField.setText(hist.substring(0, hist.length() - 1));
             }
         }
 
