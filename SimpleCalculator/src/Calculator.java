@@ -97,11 +97,11 @@ public class Calculator implements ActionListener{
         addButton.setBackground(new Color(255, 153, 51));
         addButton.setForeground(new Color (6, 28, 41));
         subButton.setBackground(new Color(255, 153, 51));
-        subButton.setForeground(Color.WHITE);
+        subButton.setForeground(new Color(6, 28, 41));
         multButton.setBackground(new Color(255, 153, 51));
-        multButton.setForeground(new Color(44, 140, 153));
+        multButton.setForeground(new Color(6, 28, 41));
         divButton.setBackground(new Color(255, 153, 51));
-        divButton.setForeground(new Color(66, 217, 200));
+        divButton.setForeground(new Color(6, 28, 41));
         equButton.setBackground(new Color(255, 153, 51));
         equButton.setForeground(new Color(6, 28, 41));
         
@@ -109,7 +109,7 @@ public class Calculator implements ActionListener{
         // ================== Size Customization =================
 
         // Font
-        clrButton.setFont(new Font("Sans Serif", Font.BOLD, 10));
+
         
         // equButton.setPreferredSize(new Dimension(160, 50));
         
@@ -134,6 +134,9 @@ public class Calculator implements ActionListener{
             numberButtons[i].setBackground(new Color(40, 70, 75));
             numberButtons[i].setForeground(new Color(151, 151, 151));
         }
+
+        // Clear Button font size change
+        clrButton.setFont(new Font("Sans Serif", Font.BOLD, 20));
 
         // Set bounds for "delete" and "clear" buttons
         // delButton.setBounds(80, 480, 145, 50);
