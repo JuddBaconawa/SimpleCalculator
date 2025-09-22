@@ -123,18 +123,18 @@ public class Calculator implements ActionListener{
             functionButtons[i].addActionListener(this);
             functionButtons[i].setFont(myFont); // use the custom font 
             functionButtons[i].setFocusable(false);
-            functionButtons[i].setBackground(new Color(3, 14, 21));
-            functionButtons[i].setForeground(new Color(255, 255, 255));
+            functionButtons[i].setBackground(new Color(6, 28, 41));
+            functionButtons[i].setForeground(new Color(151, 151, 151));
         }
 
 
         // =================Color Customization================
         // Arithmetic Symbol Buttons color
-        addButton.setBackground(new Color(66, 217, 200));
+        addButton.setBackground(new Color(255, 153, 41));
         addButton.setForeground(new Color (6, 28, 41));
-        subButton.setBackground(new Color(147, 22, 33));
+        subButton.setBackground(new Color(255, 153, 41));
         subButton.setForeground(new Color(6, 28, 41));
-        multButton.setBackground(new Color(147, 22, 33));
+        multButton.setBackground(new Color(255, 153, 41));
         multButton.setForeground(new Color(6, 28, 41));
         divButton.setBackground(new Color(255, 153, 51));
         divButton.setForeground(new Color(6, 28, 41));
@@ -152,7 +152,8 @@ public class Calculator implements ActionListener{
         }
 
         // Clear Button font size change
-        clrButton.setFont(new Font("Sans Serif", Font.BOLD, 20));
+        clrButton.setFont(new Font("Sans Serif", Font.BOLD, 18));
+        posNegButton.setFont(new Font("Sans Serif", Font.BOLD, 18));
 
         // Set bounds for "delete" and "clear" buttons
         // delButton.setBounds(80, 480, 145, 50);
@@ -160,8 +161,8 @@ public class Calculator implements ActionListener{
 
         // Create a panel to hold the buttons in a grid layout
         panel = new JPanel();
-        panel.setBounds(5, 185, 335, 300);
-        panel.setLayout(new GridLayout(5, 4, 1, 1));
+        panel.setBounds(10, 190, 325, 300);
+        panel.setLayout(new GridLayout(5, 4, 20, 8));
         panel.setBackground(new Color(3, 14, 21));       // color of the panel
         // panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Add a border to the panel
 
