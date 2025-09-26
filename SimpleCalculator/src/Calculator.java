@@ -12,7 +12,7 @@ public class Calculator implements ActionListener{
 
     // GUI components: Buttons for numbers and operations + text field
     JFrame frame;
-    JTextField historyField;
+    JTextArea historyField;
     JTextField textField;
 
     // Arrays to hold number and function buttons
@@ -25,7 +25,7 @@ public class Calculator implements ActionListener{
     JPanel panel;   // Panel to hold buttons in a grid layout
 
     // Creates and uses a custom font
-    Font myFont = new Font("Open Sans", Font.BOLD, 30);
+    Font myFont = new Font("Open Sans", Font.BOLD, 40);
     Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 60);
     Font historyDisplayPanelFont = new Font("Sans Serif", Font.BOLD, 30);
 
@@ -46,15 +46,21 @@ public class Calculator implements ActionListener{
         frame.setLayout(null);
 
         // Text Field to display history and results 
-        historyField = new JTextField();
+        historyField = new JTextArea();
         historyField.setBounds(0, 4, 344, 80);
         historyField.setFont(historyDisplayPanelFont);
         historyField.setBackground(new Color(2, 7, 11));
         historyField.setBorder(BorderFactory.createEmptyBorder());
         historyField.setForeground(new Color(255, 153, 51));
-        historyField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
-        historyField.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
-
+        // historyField.setHorizontalAlignment(SwingConstants.RIGHT); // JTextArea does not support horizontal alignment
+        historyField.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        historyField.setLineWrap(true);
+        historyField.setWrapStyleWord(true);
+        // JTextArea is fine for simple multi-line text, but JTextPane offers more flexibility (like styled text).
+        // If you only need plain text and multi-line support, JTextArea is sufficient.
+        // If you want to style parts of the history (e.g., color operators, bold results), use JTextPane.
+        // For your current use-case (just showing history), JTextArea is appropriate.
+        // If you want to switch to JTextPane later for advanced formatting, it's easy to refactor.
         // Text field to display numbers and results
         textField = new JTextField();
         textField.setBounds(0, 85, 344, 80);
@@ -237,7 +243,7 @@ public class Calculator implements ActionListener{
             num1 = Double.parseDouble(textField.getText());
             operator = '*';
             historyField.setText(historyField.getText().concat(" * "));
-            textField.setText("");
+            textField.setText(" ");
         }
         if(e.getSource() == divButton) {
             num1 = Double.parseDouble(textField.getText());
