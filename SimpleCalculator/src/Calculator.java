@@ -26,7 +26,7 @@ public class Calculator implements ActionListener{
 
     // Creates and uses a custom font
     Font myFont = new Font("Open Sans", Font.BOLD, 40);
-    Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 60);
+    Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 40);
     Font historyDisplayPanelFont = new Font("Sans Serif", Font.BOLD, 30);
 
     // Variables to store the numbers
