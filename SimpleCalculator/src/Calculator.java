@@ -26,8 +26,8 @@ public class Calculator implements ActionListener{
 
     // Creates and uses a custom font
     Font myFont = new Font("Open Sans", Font.BOLD, 40);
-    Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 40);
-    Font historyDisplayPanelFont = new Font("Sans Serif", Font.BOLD, 30);
+    Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 25);
+    Font historyDisplayPanelFont = new Font("Sans Serif", Font.BOLD, 20);
 
     // Variables to store the numbers
     double num1=0, num2=0, result=0;
@@ -38,22 +38,20 @@ public class Calculator implements ActionListener{
 
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // frame.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-        // frame.setBackground(Color.CYAN);
+
         frame.getContentPane().setBackground(new Color(2, 7, 11));
-        // frame.setBorder(1);
         frame.setSize(360, 575);
         frame.setLayout(null);
 
         // Text Field to display history and results 
         historyField = new JTextArea();
-        historyField.setBounds(0, 4, 344, 80);
+        historyField.setBounds(0, 4, 344, 100);
         historyField.setFont(historyDisplayPanelFont);
         historyField.setBackground(new Color(2, 7, 11));
         historyField.setBorder(BorderFactory.createEmptyBorder());
         historyField.setForeground(new Color(255, 153, 51));
         // historyField.setHorizontalAlignment(SwingConstants.RIGHT); // JTextArea does not support horizontal alignment
-        historyField.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        historyField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         historyField.setLineWrap(true);
         historyField.setWrapStyleWord(true);
         // JTextArea is fine for simple multi-line text, but JTextPane offers more flexibility (like styled text).
@@ -63,7 +61,7 @@ public class Calculator implements ActionListener{
         // If you want to switch to JTextPane later for advanced formatting, it's easy to refactor.
         // Text field to display numbers and results
         textField = new JTextField();
-        textField.setBounds(0, 85, 344, 80);
+        textField.setBounds(0, 99, 344, 60);
         textField.setFont(displayPanelFont);
         textField.setBackground(new Color(2, 7, 11));
         textField.setForeground(new Color(66, 217, 200));
@@ -161,6 +159,7 @@ public class Calculator implements ActionListener{
         // Clear Button font size change
         clrButton.setFont(new Font("Sans Serif", Font.BOLD, 18));
         posNegButton.setFont(new Font("Sans Serif", Font.BOLD, 18));
+        percentageButton.setFont(new Font("Sans Serif", Font.BOLD, 18));
 
         // Set bounds for "delete" and "clear" buttons
         // delButton.setBounds(80, 480, 145, 50);
@@ -271,9 +270,19 @@ public class Calculator implements ActionListener{
                 historyField.setText(historyField.getText() + " = " + result);  // to show full expression
                 num1 = result; // To continue the calculation with the result
         }
+        if(e.getSource() == percentageButton) {
+            double current = Double.parseDouble(textField.getText());
+            current = current / 100;
+            textField.setText(String.valueOf(current));
+            historyField.setText(historyField.getText() + "%");
+        }
         if(e.getSource() == clrButton) {
             textField.setText("");
-            historyField.setText(historyField.getText().concat(""));
+            historyField.setText("");
+            num1 = 0;
+            num2 = 0;
+            result = 0;
+            operator = '\0'; // Reset operator  
         }
         if(e.getSource() == delButton) {
             String string = textField.getText();
@@ -289,7 +298,5 @@ public class Calculator implements ActionListener{
                 historyField.setText(hist.substring(0, hist.length() - 1));
             }
         }
-
-
     }
 }
