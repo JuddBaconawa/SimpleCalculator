@@ -14,6 +14,7 @@ public class Calculator implements ActionListener{
     JFrame frame;
     JTextArea historyField;
     JTextField textField;
+    JPanel panel;   // Panel to hold buttons in a grid layout
 
     // Arrays to hold number and function buttons
     JButton[] numberButtons = new JButton[10];  // Numbers 0-9
@@ -22,23 +23,23 @@ public class Calculator implements ActionListener{
     // Function buttons: add, subtract, multiply, divide, decimal, equals, delete, clear
     JButton addButton, subButton, multButton, divButton;
     JButton percentageButton, posNegButton, decButton, equButton, delButton, clrButton, negButton;
-    JPanel panel;   // Panel to hold buttons in a grid layout
+
 
     // Creates and uses a custom font
     Font myFont = new Font("Open Sans", Font.BOLD, 40);
-    Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 25);
-    Font historyDisplayPanelFont = new Font("Sans Serif", Font.BOLD, 20);
+    Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 23);
+    Font historyDisplayPanelFont = new Font("Sans Serif", Font.BOLD, 18);
 
     // Variables to store the numbers
     double num1=0, num2=0, result=0;
     char operator;
+    StringBuilder history = new StringBuilder(); // To keep track of the calculation history
 
     // Constructor for the Class of the same name
     Calculator() {
 
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         frame.getContentPane().setBackground(new Color(2, 7, 11));
         frame.setSize(360, 575);
         frame.setLayout(null);
