@@ -168,7 +168,13 @@ public class Calculator implements ActionListener{
 
     private JButton createFunctionButton(String text) {
         JButton button = new RoundedButton(text, 15);
-        
+        button.setFont(myFont);
+        button.setBackground(new Color(255, 153, 51));
+        button.setForeground(new Color(6, 28, 41));
+        button.setFocusable(false);
+        button.addActionListener(this);
+        return button;
+
     }
 
     public static void main(String[] args) {
