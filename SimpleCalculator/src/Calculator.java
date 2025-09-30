@@ -81,45 +81,16 @@ public class Calculator implements ActionListener{
         percentageButton = new RoundedButton("%", 15);
         posNegButton = new RoundedButton("-/+", 15);
 
+        // Assign action commands
+
 
 
         // Add action listeners to the function buttons
-        functionButtons[0] = addButton;
-        functionButtons[1] = subButton;
-        functionButtons[2] = multButton;
-        functionButtons[3] = divButton;
-        functionButtons[4] = decButton;
-        functionButtons[5] = equButton;
-        functionButtons[6] = delButton;
-        functionButtons[7] = clrButton;
-        functionButtons[8] = percentageButton;
-        functionButtons[9] = posNegButton;
-
-
-        // =================Color Customization================
-        // Arithmetic Symbol Buttons color
-        addButton.setBackground(new Color(255, 153, 51));
-        addButton.setForeground(new Color (6, 28, 41));
-        subButton.setBackground(new Color(255, 153, 51));
-        subButton.setForeground(new Color(6, 28, 41));
-        multButton.setBackground(new Color(255, 153, 51));
-        multButton.setForeground(new Color(6, 28, 41));
-        divButton.setBackground(new Color(255, 153, 51));
-        divButton.setForeground(new Color(6, 28, 41));
-        equButton.setBackground(new Color(255, 153, 51));
-        equButton.setForeground(new Color(6, 28, 41));
-        
-
-        // ================== Size Customization =================
-
-        // Font
-
-        
-        // equButton.setPreferredSize(new Dimension(160, 50));
-        
-
-        // functionButtons.setBackground(new Color(255, 153, 51));
-        // panel.setBackground(new Color(151, 151, 151));
+        functionButtons = new JButton[] {
+            addButton, subButton, multButton, divButton,
+            decButton, equButton, delButton, clrButton,
+            percentageButton, posNegButton
+        };
 
 
         // For loop to add action listeners
@@ -132,45 +103,24 @@ public class Calculator implements ActionListener{
         }
 
 
-        // =================Color Customization================
-        // Arithmetic Symbol Buttons color
-        addButton.setBackground(new Color(255, 153, 41));
-        addButton.setForeground(new Color (6, 28, 41));
-        subButton.setBackground(new Color(255, 153, 41));
-        subButton.setForeground(new Color(6, 28, 41));
-        multButton.setBackground(new Color(255, 153, 41));
-        multButton.setForeground(new Color(6, 28, 41));
-        divButton.setBackground(new Color(255, 153, 51));
-        divButton.setForeground(new Color(6, 28, 41));
-        equButton.setBackground(new Color(255, 153, 51));
-        equButton.setForeground(new Color(6, 28, 41));
 
         // For loop to create number buttons 0-9
         for(int i = 0; i<10; i++) {
-            numberButtons[i] = new RoundedButton(String.valueOf(i), 15);  // convert int to string
-            numberButtons[i].addActionListener(this);
-            numberButtons[i].setFont(myFont);
-            numberButtons[i].setFocusable(false);
-            numberButtons[i].setBackground(new Color(3, 14, 21));
-            numberButtons[i].setForeground(new Color(151, 151, 151));
+            numberButtons[i] = createNumberButton(String.valueOf(i));  // convert int to string
+            // numberButtons[i].addActionListener(this);
+            // numberButtons[i].setFont(myFont);
+            // numberButtons[i].setFocusable(false);
+            // numberButtons[i].setBackground(new Color(3, 14, 21));
+            // numberButtons[i].setForeground(new Color(151, 151, 151));
         }
-
-        // Clear Button font size change
-        clrButton.setFont(new Font("Sans Serif", Font.BOLD, 18));
-        posNegButton.setFont(new Font("Sans Serif", Font.BOLD, 18));
-        percentageButton.setFont(new Font("Sans Serif", Font.BOLD, 18));
-
-        // Set bounds for "delete" and "clear" buttons
-        // delButton.setBounds(80, 480, 145, 50);
-        // clrButton.setBounds(235, 480, 145, 50);
 
         // Create a panel to hold the buttons in a grid layout
         panel = new JPanel();
         panel.setBounds(10, 190, 325, 300);
         panel.setLayout(new GridLayout(5, 4, 20, 8));
         panel.setBackground(new Color(2, 7, 11));       // color of the panel
-        // panel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2)); // Add a border to the panel
 
+        // Add buttons to the panel in the desired order
         panel.add(clrButton);
         panel.add(posNegButton);
         panel.add(percentageButton);
@@ -198,22 +148,40 @@ public class Calculator implements ActionListener{
 
         // Add components to the frame
         frame.add(panel);
-        // frame.add(delButton);
-        // frame.add(clrButton);
         frame.add(historyField);
         frame.add(textField);
         frame.setVisible(true);
 
     }
 
+    private JButton createNumberButton(String text) {
+        JButton button = new RoundedButton(text, 15);
+        button.setFont(myFont);
+        button.setFocusable(false);
+        button.setBackground(new Color(3, 14, 21));
+        button.setForeground(new Color(151, 151, 151));
+        button.addActionListener(this);
+        button.setActionCommand(text);
+        return button;
+
+    }
+
+    private JButton createFunctionButton(String text) {
+        JButton button = new RoundedButton(text, 15);
+        
+    }
+
     public static void main(String[] args) {
         
-        Calculator calc = new Calculator();
+        new Calculator();
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String cmd = e.getActionCommand();
+
+
         // TODO Auto-generated method stub
         for(int i=0; i<10; i++) {
             if(e.getSource() == numberButtons[i]) {
