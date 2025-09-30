@@ -51,16 +51,14 @@ public class Calculator implements ActionListener{
         historyField.setBackground(new Color(2, 7, 11));
         historyField.setBorder(BorderFactory.createEmptyBorder());
         historyField.setForeground(new Color(255, 153, 51));
-        // historyField.setHorizontalAlignment(SwingConstants.RIGHT); // JTextArea does not support horizontal alignment
         historyField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         historyField.setLineWrap(true);
         historyField.setWrapStyleWord(true);
-        // JTextArea is fine for simple multi-line text, but JTextPane offers more flexibility (like styled text).
-        // If you only need plain text and multi-line support, JTextArea is sufficient.
-        // If you want to style parts of the history (e.g., color operators, bold results), use JTextPane.
-        // For your current use-case (just showing history), JTextArea is appropriate.
-        // If you want to switch to JTextPane later for advanced formatting, it's easy to refactor.
-        // Text field to display numbers and results
+
+        JScrollPane historyScroll = new JScrollPane(historyField);
+        historyScroll.setBounds(0, 4, 344, 100);
+        historyScroll.setBorder(BorderFactory.createEmptyBorder());
+
         textField = new JTextField();
         textField.setBounds(0, 99, 344, 60);
         textField.setFont(displayPanelFont);
@@ -71,7 +69,7 @@ public class Calculator implements ActionListener{
         textField.setEditable(false);       //so the user cant type in
         textField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
 
-        // text label for the buttons
+        // create and assign text label for the buttons
         addButton = new RoundedButton("+", 15);
         subButton = new RoundedButton("-", 15);
         multButton = new RoundedButton("*", 15);
