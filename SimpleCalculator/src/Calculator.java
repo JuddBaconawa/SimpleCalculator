@@ -70,9 +70,9 @@ public class Calculator implements ActionListener{
         textField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
 
         // create and assign text label for the buttons
-        addButton = new RoundedButton("+", 15);
-        subButton = new RoundedButton("-", 15);
-        multButton = new RoundedButton("*", 15);
+        addButton = createFunctionButton ("+");
+        subButton = createFunctionButton("-");
+        multButton = new RoundedButton("*");
         divButton = new RoundedButton("/", 15);
         decButton = new RoundedButton(".", 15);
         equButton = new RoundedButton("=", 15);
@@ -82,6 +82,7 @@ public class Calculator implements ActionListener{
         posNegButton = new RoundedButton("-/+", 15);
 
         // Assign action commands
+        addButton.setActionCommand("+");
 
 
 
@@ -95,11 +96,7 @@ public class Calculator implements ActionListener{
 
         // For loop to add action listeners
         for(int i=0; i<10; i++) {
-            functionButtons[i].addActionListener(this);
-            functionButtons[i].setFont(myFont); // use the custom font 
-            functionButtons[i].setFocusable(false);
-            functionButtons[i].setBackground(new Color(6, 28, 41));
-            functionButtons[i].setForeground(new Color(151, 151, 151));
+            numberButtons[i] = createNumberButton(String.valueOf(i));
         }
 
 
