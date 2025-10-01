@@ -107,11 +107,6 @@ public class Calculator implements ActionListener{
         // For loop to create number buttons 0-9
         for(int i = 0; i<10; i++) {
             numberButtons[i] = createNumberButton(String.valueOf(i));  // convert int to string
-            // numberButtons[i].addActionListener(this);
-            // numberButtons[i].setFont(myFont);
-            // numberButtons[i].setFocusable(false);
-            // numberButtons[i].setBackground(new Color(3, 14, 21));
-            // numberButtons[i].setForeground(new Color(151, 151, 151));
         }
 
         // Create a panel to hold the buttons in a grid layout
