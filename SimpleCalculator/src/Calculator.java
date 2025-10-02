@@ -72,18 +72,26 @@ public class Calculator implements ActionListener{
         // create and assign text label for the buttons
         addButton = createFunctionButton ("+");
         subButton = createFunctionButton("-");
-        multButton = new RoundedButton("*");
-        divButton = new RoundedButton("/", 15);
-        decButton = new RoundedButton(".", 15);
-        equButton = new RoundedButton("=", 15);
-        delButton = new RoundedButton("C", 15);
-        clrButton = new RoundedButton("A/C", 15);
-        percentageButton = new RoundedButton("%", 15);
-        posNegButton = new RoundedButton("-/+", 15);
+        multButton = createFunctionButton("*");
+        divButton = createFunctionButton("/");
+        decButton = createFunctionButton(".");
+        equButton = createFunctionButton("=");
+        delButton = createFunctionButton("C");
+        clrButton = createFunctionButton("A/C");
+        percentageButton = createFunctionButton("%");
+        posNegButton = createFunctionButton("-/+");
 
         // Assign action commands
         addButton.setActionCommand("+");
-
+        subButton.setActionCommand("-");
+        multButton.setActionCommand("*");
+        divButton.setActionCommand("/");
+        decButton.setActionCommand(".");
+        equButton.setActionCommand("=");
+        delButton.setActionCommand("DEL");
+        clrButton.setActionCommand("CLR");
+        percentageButton.setActionCommand("%");
+        posNegButton.setActionCommand("POSNEG");
 
 
         // Add action listeners to the function buttons
