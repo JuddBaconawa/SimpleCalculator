@@ -102,13 +102,6 @@ public class Calculator implements ActionListener{
         };
 
 
-        // For loop to add action listeners
-        for(int i=0; i<10; i++) {
-            numberButtons[i] = createNumberButton(String.valueOf(i));
-        }
-
-
-
         // For loop to create number buttons 0-9
         for(int i = 0; i<10; i++) {
             numberButtons[i] = createNumberButton(String.valueOf(i));  // convert int to string
@@ -187,89 +180,80 @@ public class Calculator implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
 
+        switch (cmd) {
+            case "0": case "1": case "2": case "3": case "4":
+            case "5": case "6": case "7": case "8": case "9":
+                textField.setText(textField.getText() + cmd);
+                history.append(cmd);
+                historyField.setText(history.toString());
+                break;
 
-        // TODO Auto-generated method stub
-        for(int i=0; i<10; i++) {
-            if(e.getSource() == numberButtons[i]) {
-                textField.setText(textField.getText().concat(String.valueOf(i)));
-                historyField.setText(historyField.getText() + String.valueOf(i));
-            }
-        }
-        if(e.getSource() == decButton) {
-            textField.setText(textField.getText().concat("."));
-            historyField.setText(historyField.getText().concat("."));
-        }
-        if(e.getSource() == addButton) {
-            num1 = Double.parseDouble(textField.getText());
-            operator = '+';
-            historyField.setText(historyField.getText().concat(" + "));
-            textField.setText("");
-        }
-        if(e.getSource() == subButton) {
-            num1 = Double.parseDouble(textField.getText());
-            operator = '-';
-            textField.setText("");
-            historyField.setText(historyField.getText().concat(" - "));
-        }
-        if(e.getSource() == multButton) {
-            num1 = Double.parseDouble(textField.getText());
-            operator = '*';
-            historyField.setText(historyField.getText().concat(" * "));
-            textField.setText(" ");
-        }
-        if(e.getSource() == divButton) {
-            num1 = Double.parseDouble(textField.getText());
-            operator = '/';
-            textField.setText("");
-            historyField.setText(historyField.getText().concat(" / "));
-        }
-        if(e.getSource() == equButton) {
-            num2 = Double.parseDouble(textField.getText());
-            switch (operator) {
-                case '+':
-                    result = num1 + num2;
-                    break;
-                case '-':
-                    result = num1 - num2;
-                    break;
-                case '*':
-                    result = num1 * num2;
-                    break;
-                case '/':
-                    result = num1 / num2;
-                    break;
+            case ".":
+                if (!textField.getText().contains(".")) {
+                    textField.setText(textField.getText() + ".");
+                    history.append(".");
+                    historyField.setText(history.toString());
                 }
-                textField.setText(String.valueOf(result));
-                historyField.setText(historyField.getText() + " = " + result);  // to show full expression
-                num1 = result; // To continue the calculation with the result
-        }
-        if(e.getSource() == percentageButton) {
-            double current = Double.parseDouble(textField.getText());
-            current = current / 100;
-            textField.setText(String.valueOf(current));
-            historyField.setText(historyField.getText() + "%");
-        }
-        if(e.getSource() == clrButton) {
-            textField.setText("");
-            historyField.setText("");
-            num1 = 0;
-            num2 = 0;
-            result = 0;
-            operator = '\0'; // Reset operator  
-        }
-        if(e.getSource() == delButton) {
-            String string = textField.getText();
-            textField.setText("");
-            for(int i=0; i<string.length()-1; i++) {
-                textField.setText(textField.getText()+string.charAt(i));
-                historyField.setText(historyField.getText()+string.charAt(i));
-            }
+                break;
+            
+            case "+": case "-": case "*": case "/":
+                if (!textField.getText().isEmpty()) {
+                    num1 = Double.parseDouble(textField.getText());
+                    operator = cmd.charAt(0);
+                    history.append(" " + cmd + " ");
+                    historyField.setText(history.toString());
+                    textField.setText(" ");
+                }
+                break;
 
-            // Remove last character from historyField as well
-            String hist = historyField.getText();
-            if(hist.length() > 0) {
-                historyField.setText(hist.substring(0, hist.length() - 1));
-            }
+            case "=":
+                if (!textField.getText().isEmpty()) {
+                    num2 = Double.parseDouble(textField.getText());
+                    switch (operator) {
+                        case '+': result = num1 + num2; break;
+                        case '-': result = num1 - num2; break;
+                        case '*': result = num1 * num2; break;
+                        case '/': 
+                            if (num2 == 0) {
+                                textField.setText("Error");
+                                return;
+                            }
+                            result = num1 / num2; break;
+                    }
+                    textField.setText(String.valueOf(result));
+                    history.append(" = " + result);
+                    historyField.setText(history.toString());
+                    num1 = result; // Continue chaining
+                }
+                break;
+
+            case "%":
+                if (!textField.getText().isEmpty()) {
+                    double current = Double.parseDouble(textField.getText()) / 100;
+                    textField.setText(String.valueOf(current));
+                    history.append("%");
+                    historyField.setText(history.toString());
+                }
+                break;
+
+            case "CLR":
+                textField.setText("");
+                history.setLength(0);
+                historyField.setText("");
+                num1 = num2 = result = 0;
+                operator = '\0';
+                break;
+
+            case "DEL":
+                String current = textField.getText();
+                if (!current.isEmpty()) {
+                    textField.setText(current.substring(0, current.length() - 1));
+                }
+                if (history.length() > 0) {
+                    history.deleteCharAt(history.length() -1);
+                    historyField.setText(history.toString());
+                }
         }
+
     }
 }
