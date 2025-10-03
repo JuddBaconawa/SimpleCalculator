@@ -257,6 +257,16 @@ public class Calculator implements ActionListener{
 
             case "POSNEG":
                 if (!textField.getText().isEmpty()) {
+                    double value = Double.parseDouble(textField.getText());
+                    textField.setText(String.valueOf(value));
+
+                    // Update History
+                    String historyString = history.toString();
+                    int lastOperatorIndex = Math.max(
+                        Math.max(historyString.lastIndexOf('+'), historyString.lastIndexOf('-')),
+                        Math.max(historyString.lastIndexOf('*'), historyString.lastIndexOf('/'))
+                    );
+
                     
                 }
                 
