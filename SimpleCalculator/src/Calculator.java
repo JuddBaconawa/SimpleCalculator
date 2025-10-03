@@ -8,7 +8,7 @@ import java.awt.event.*;
 
 
 //main
-public class Calculator implements ActionListener{
+public class Calculator extends JFrame implements ActionListener{
 
     // GUI components: Buttons for numbers and operations + text field
     JFrame frame;
