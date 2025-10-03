@@ -27,6 +27,7 @@ public class Calculator implements ActionListener{
 
     // Creates and uses a custom font
     Font myFont = new Font("Open Sans", Font.BOLD, 40);
+    Font arithmeticFont = new Font("Sans Serif", Font.BOLD, 18);
     Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 23);
     Font historyDisplayPanelFont = new Font("Sans Serif", Font.BOLD, 18);
 
@@ -161,7 +162,7 @@ public class Calculator implements ActionListener{
 
     private JButton createFunctionButton(String text) {
         JButton button = new RoundedButton(text, 15);
-        button.setFont(myFont);
+        button.setFont(arithmeticFont);
         button.setBackground(new Color(255, 153, 51));
         button.setForeground(new Color(6, 28, 41));
         button.setFocusable(false);
@@ -253,6 +254,12 @@ public class Calculator implements ActionListener{
                     history.deleteCharAt(history.length() -1);
                     historyField.setText(history.toString());
                 }
+
+            case "POSNEG":
+                if (!textField.getText().isEmpty()) {
+                    
+                }
+                
         }
 
     }
