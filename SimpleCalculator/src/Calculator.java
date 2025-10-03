@@ -171,11 +171,6 @@ public class Calculator implements ActionListener{
 
     }
 
-    public static void main(String[] args) {
-        
-        new Calculator();
-
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -267,10 +262,23 @@ public class Calculator implements ActionListener{
                         Math.max(historyString.lastIndexOf('*'), historyString.lastIndexOf('/'))
                     );
 
-                    
+                    if (lastOperatorIndex == -1) {
+                        // No operator found, toggle the entire number into this number
+                        history.setLength(0);
+                        history.append(value);
+                    } else {
+                        //replace the last number part
+                        String before = historyString.substring(0, lastOperatorIndex + 1);
+                        history.setLength(0);
+                        history.append(before).append(" ").append(value);
+                    }
+
+                    historyField.setText(history.toString());
                 }
+                break;
                 
         }
 
     }
+
 }
