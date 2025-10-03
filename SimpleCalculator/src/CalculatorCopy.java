@@ -233,6 +233,33 @@ public class CalculatorCopy implements ActionListener {
                     textField.setText(String.valueOf(value));
                 }
                 break;
+
+            case "POSNEG2":
+                if (!textField.getText().isEmpty()) {
+                    double value = Double.parseDouble(textField.getText()) * -1;
+                    textField.setText(String.valueOf(value));
+
+                    // Update history: replace the last number with the new one
+                    String historyStr = history.toString();
+                    int lastOpIndex = Math.max(
+                        Math.max(historyStr.lastIndexOf('+'), historyStr.lastIndexOf('-')),
+                        Math.max(historyStr.lastIndexOf('*'), historyStr.lastIndexOf('/'))
+                    );
+
+                    if (lastOpIndex == -1) {
+                        // No operator yet → whole history is just this number
+                        history.setLength(0);
+                        history.append(value);
+                    } else {
+                        // Replace just the last number part
+                        String before = historyStr.substring(0, lastOpIndex + 1);
+                        history.setLength(0);
+                        history.append(before).append(" ").append(value);
+                    }
+
+                    historyField.setText(history.toString());
+                }
+                break;
         }
     }
 
