@@ -61,7 +61,7 @@ public class Calculator extends JFrame implements ActionListener{
         historyScroll.setBorder(BorderFactory.createEmptyBorder());
 
         textField = new JTextField();
-        textField.setBounds(0, 99, 344, 60);
+        textField.setBounds(0, 104, 344, 60);
         textField.setFont(displayPanelFont);
         textField.setBackground(new Color(2, 7, 11));
         textField.setForeground(new Color(66, 217, 200));
