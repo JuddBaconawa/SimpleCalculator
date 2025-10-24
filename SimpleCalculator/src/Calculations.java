@@ -18,117 +18,136 @@ public class Calculations {
     boolean justCalculated = false;
     StringBuilder history = new StringBuilder();
 
-    public Calculations(JTextField textfield, JTextArea historyField) {
+    public Calculations(JTextField textField, JTextArea historyField) {
         this.textField = textField;
         this.historyField = historyField;
     }
 
-public void handleAction(ActionEvent e) {
-        String cmd = e.getActionCommand();
+    public void handleAction(ActionEvent e) {
+            String cmd = e.getActionCommand();
 
-        switch (cmd) {
-            case "0": case "1": case "2": case "3": case "4":
-            case "5": case "6": case "7": case "8": case "9":
-                textField.setText(textField.getText() + cmd);
-                history.append(cmd);
-                historyField.setText(history.toString());
-                break;
+            if (cmd.matches("[0-9]")) {
+                handleNumber(cmd);
+                return;
+            }
 
-            case ".":
-                if (!textField.getText().contains(".")) {
-                    textField.setText(textField.getText() + ".");
-                    history.append(".");
-                    historyField.setText(history.toString());
-                }
-                break;
-            
-            case "+": case "-": case "*": case "/":
-                if (!textField.getText().isEmpty()) {
-                    num1 = Double.parseDouble(textField.getText());
-                    operator = cmd.charAt(0);
-                    history.append(" " + cmd + " ");
-                    historyField.setText(history.toString());
-                    textField.setText(" ");
-                }
-                break;
+            switch (cmd) {
+                case "." -> handleDecimal();
+                case "+", "-", "*", "/" -> handleOperator(cmd.charAt(0));
+                case "=" -> handleEquals();
+                case "%" -> handlePercent();
+                case "CLR" -> handleClear();
+                case "DEL" -> handleDelete();
+                case "POSNEG" -> handlePosNeg();
+            }
+        
+    }
 
-            case "=":
-                if (!textField.getText().isEmpty()) {
-                    num2 = Double.parseDouble(textField.getText());
-                    switch (operator) {
-                        case '+': result = num1 + num2; break;
-                        case '-': result = num1 - num2; break;
-                        case '*': result = num1 * num2; break;
-                        case '/': 
-                            if (num2 == 0) {
-                                textField.setText("Error");
-                                return;
-                            }
-                            result = num1 / num2; break;
-                    }
-                    textField.setText(String.valueOf(result));
-                    history.append(" = " + result);
-                    historyField.setText(history.toString());
-                    num1 = result; // Continue chaining
-                }
-                break;
-
-            case "%":
-                if (!textField.getText().isEmpty()) {
-                    double current = Double.parseDouble(textField.getText()) / 100;
-                    textField.setText(String.valueOf(current));
-                    history.append("%");
-                    historyField.setText(history.toString());
-                }
-                break;
-
-            case "CLR":
-                textField.setText("");
-                history.setLength(0);
-                historyField.setText("");
-                num1 = num2 = result = 0;
-                operator = '\0';
-                break;
-
-            case "DEL":
-                String current = textField.getText();
-                if (!current.isEmpty()) {
-                    textField.setText(current.substring(0, current.length() - 1));
-                }
-                if (history.length() > 0) {
-                    history.deleteCharAt(history.length() -1);
-                    historyField.setText(history.toString());
-                }
-
-            case "POSNEG":
-                if (!textField.getText().isEmpty()) {
-                    double value = Double.parseDouble(textField.getText());
-                    textField.setText(String.valueOf(value));
-
-                    // Update History
-                    String historyString = history.toString();
-                    int lastOperatorIndex = Math.max(
-                        Math.max(historyString.lastIndexOf('+'), historyString.lastIndexOf('-')),
-                        Math.max(historyString.lastIndexOf('*'), historyString.lastIndexOf('/'))
-                    );
-
-                    if (lastOperatorIndex == -1) {
-                        // No operator found, toggle the entire number into this number
-                        history.setLength(0);
-                        history.append(value);
-                    } else {
-                        //replace the last number part
-                        String before = historyString.substring(0, lastOperatorIndex + 1);
-                        history.setLength(0);
-                        history.append(before).append(" ").append(value);
-                    }
-
-                    historyField.setText(history.toString());
-                }
-                break;
-                
+    // ---------------------------------
+    //     HANDLER METHODS
+    // ---------------------------------
+    private void handleNumber(String num) {
+        if (justCalculated) {
+            textField.setText("");
+            justCalculated = false;
         }
-	
+
+        textField.setText(textField.getText() + num);
+        history.append(num);
+        updateHistory();
+    }
+
+    private void handleDecimal() {
+        String current = textField.getText();
+        if (!current.contains(".")) {
+            textField.setText(current + ".");
+            history.append(".");
+            updateHistory();
+        }
+    }
+
+    private void handleOperator(char op) {
+        if (textField.getText().isEmpty()) return;
+
+        num1 = Double.parseDouble(textField.getText());
+        operator = op;
+        history.append(" ").append(op).append(" ");
+        updateHistory();
+        textField.setText("");
+    }
+
+    private void handleEquals() {
+        if (textField.getText().isEmpty()) return;
+
+        num2 = Double.parseDouble(textField.getText());
+        result = calculate(num1, num2, operator);
+
+        textField.setText(String.valueOf(result));
+        history.append(" = ").append(result);
+        updateHistory();
+
+        num1 = result;
+        justCalculated = true;
+    }
+
+    private void handlePercent() {
+        if (textField.getText().isEmpty()) return;
+
+        double value = Double.parseDouble(textField.getText()) / 100;
+        textField.setText(String.valueOf(result));
+        history.append("%");
+        updateHistory();
+       
+    }
+
+    private void handleDelete() {
+        String current = textField.getText();
+        if (!current.isEmpty()) {
+            textField.setText(current.substring(0, current.length() - 1));
+        }
+
+        if (history.length() > 0) {
+            history.deleteCharAt(history.length() - 1);
+            updateHistory();
+        }
+
+        // prevents falling into the next case?
+    }
+
+    private void handlePosNeg() {
+        if (textField.getText().isEmpty()) return;
+
+        double value = Double.parseDouble(textField.getText()) * -1;
+        textField.setText(String.valueOf(value));
+        updateHistoryFieldWithValue(value);
+    }
+
+    private void handleClear() {
+        textField.setText("");
+        history.setLength(0);
+        updateHistory();
+        num1 = num2 = result = 0;
+        operator = '\0';
+        justCalculated = false;
+    }
+
+
+    // ---------------------------------
+    //     UTILITY METHODS
+    // ---------------------------------
+
+    private double calculate(double a, double b, char op) {
+        return switch (op) {
+            case '+' -> a + b;
+            case '-' -> a - b;
+            case '*' -> a * b;
+            case '/' -> (b != 0) ? a / b : Double.NaN;
+            default -> 0;
+        };
+    }
+
+    private void updateHistory() {
+        historyField.setText(history.toString());
     }
 
     private void updateHistoryFieldWithValue(double value) {
