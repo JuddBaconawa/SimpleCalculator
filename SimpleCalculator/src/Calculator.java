@@ -42,11 +42,12 @@ public class Calculator extends JFrame implements ActionListener{
     // Constructor for the Class of the same name
     Calculator() {
 
-        frame = new JFrame("Calculator");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setBackground(new Color(2, 7, 11));
-        frame.setSize(360, 575);
-        frame.setLayout(null);
+        // frame = new JFrame("Calculator");
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.getContentPane().setBackground(new Color(2, 7, 11));
+        this.frame.setSize(360, 575);
+        this.frame.setLayout(null);
+        this.frame.setVisible(true);
 
         // Text Field to display history and results 
         historyField = new JTextArea();
@@ -147,7 +148,7 @@ public class Calculator extends JFrame implements ActionListener{
         frame.add(panel);
         frame.add(historyField);
         frame.add(textField);
-        frame.setVisible(true);
+        
 
     }
 
