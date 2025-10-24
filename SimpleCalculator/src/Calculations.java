@@ -13,9 +13,17 @@ public class Calculations {
     JTextArea historyField;
     JTextField textField;
 
-    
+    double num1 = 0, num2 = 0, result = 0;
+    char operator;
+    boolean justCalculated = false;
+    StringBuilder history = new StringBuilder();
 
-public void actionPerformed(ActionEvent e) {
+    public Calculations(JTextField textfield, JTextArea historyField) {
+        this.textField = textField;
+        this.historyField = historyField;
+    }
+
+public void handleAction(ActionEvent e) {
         String cmd = e.getActionCommand();
 
         switch (cmd) {
@@ -121,6 +129,24 @@ public void actionPerformed(ActionEvent e) {
                 
         }
 	
+    }
+
+    private void updateHistoryFieldWithValue(double value) {
+      String historyString = history.toString();
+      int lastOperatorIndex = Math.max(
+        Math.max(historyString.lastIndexOf('+'), historyString.lastIndexOf('-')),
+        Math.max(historyString.lastIndexOf('*'), historyString.lastIndexOf('/'))
+      );
+
+      if (lastOperatorIndex == -1) {
+          history.setLength(0);
+          history.append(value);
+      } else {
+          String before = historyString.substring(0, lastOperatorIndex + 1);
+          history.setLength(0);
+          history.append(before).append(" ").append(value);
+      }
+      historyField.setText(history.toString());      
     }
 
 }
