@@ -22,7 +22,7 @@ public class Calculator extends JFrame implements ActionListener{
 
     // Button labels for the calculator grid
     private static final String[] BUTTON_LABELS = {
-        "CLR", "%", "POSNEG", "+",
+        "CLR", "POSNEG", "%", "+",
         "1", "2", "3", "-",
         "4", "5", "6", "*",
         "7", "8", "9", "/",
@@ -38,17 +38,11 @@ public class Calculator extends JFrame implements ActionListener{
     Font displayPanelFont = new Font("Sans Serif", Font.BOLD, 23);
     Font historyDisplayPanelFont = new Font("Sans Serif", Font.BOLD, 18);
 
-    // Variables to store the numbers
-    // double num1=0, num2=0, result=0;
-    // char operator;
-    // boolean justCalculated = false; //flags
-    Calculations calculations = new Calculations();
-    StringBuilder history = new StringBuilder(); // To keep track of the calculation history
 
     // Constructor for the Class of the same name
     Calculator() {
 
-        // frame = new JFrame("Calculator");
+        // Frame setup
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.getContentPane().setBackground(new Color(2, 7, 11));
         this.frame.setSize(360, 575);
