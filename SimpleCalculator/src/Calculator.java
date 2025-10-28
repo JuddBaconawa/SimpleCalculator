@@ -12,18 +12,24 @@ import java.awt.event.*;
 public class Calculator extends JFrame implements ActionListener{
 
     // GUI components: Buttons for numbers and operations + text field
-    JFrame frame;
-    JTextArea historyField;
-    JTextField textField;
-    JPanel panel;   // Panel to hold buttons in a grid layout
+    private final JFrame frame;
+    private final JTextArea historyField;
+    private final JTextField textField;
+    private final JPanel panel;   // Panel to hold buttons in a grid layout
 
-    // Arrays to hold number and function buttons
-    JButton[] numberButtons = new JButton[10];  // Numbers 0-9
-    JButton[] functionButtons = new JButton[10]; // 8 function buttons
+    // Logic Handler
+    private final Calculations calc;
 
-    // Function buttons: add, subtract, multiply, divide, decimal, equals, delete, clear
-    JButton addButton, subButton, multButton, divButton;
-    JButton percentageButton, posNegButton, decButton, equButton, delButton, clrButton, negButton;
+    // Button labels for the calculator grid
+    private static final String[] BUTTON_LABELS = {
+        "CLR", "%", "POSNEG", "+",
+        "1", "2", "3", "-",
+        "4", "5", "6", "*",
+        "7", "8", "9", "/",
+        ".", "0", "=", "DEL"
+    };
+
+
 
 
     // Creates and uses a custom font
