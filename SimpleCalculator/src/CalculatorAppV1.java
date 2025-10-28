@@ -266,6 +266,6 @@ public class CalculatorAppV1 implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new Calculator();
+        new CalculatorAppV1();
     }
 }
