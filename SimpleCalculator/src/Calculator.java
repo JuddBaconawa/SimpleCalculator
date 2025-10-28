@@ -12,7 +12,7 @@ import java.awt.event.*;
 public class Calculator extends JFrame implements ActionListener{
 
     // GUI components: Buttons for numbers and operations + text field
-    private final JFrame frame;
+    // private final JFrame frame;
     private final JTextArea historyField;
     private final JTextField textField;
     private final JPanel panel;   // Panel to hold buttons in a grid layout
@@ -43,11 +43,11 @@ public class Calculator extends JFrame implements ActionListener{
     Calculator() {
 
         // Frame setup
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.getContentPane().setBackground(new Color(2, 7, 11));
-        this.frame.setSize(360, 575);
-        this.frame.setLayout(null);
-        this.frame.setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setBackground(new Color(2, 7, 11));
+        setSize(360, 575);
+        setLayout(null);
+        setVisible(true);
 
         // Text Field to display history and results 
         historyField = new JTextArea();
@@ -145,9 +145,9 @@ public class Calculator extends JFrame implements ActionListener{
 
 
         // Add components to the frame
-        frame.add(panel);
-        frame.add(historyField);
-        frame.add(textField);
+        add(panel);
+        add(historyField);
+        add(textField);
         
 
     }
