@@ -74,37 +74,7 @@ public class Calculator extends JFrame implements ActionListener{
         textField.setEditable(false);       //so the user cant type in
         textField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
 
-        // create and assign text label for the buttons
-        addButton = createFunctionButton ("+");
-        subButton = createFunctionButton("-");
-        multButton = createFunctionButton("*");
-        divButton = createFunctionButton("/");
-        decButton = createFunctionButton(".");
-        equButton = createFunctionButton("=");
-        delButton = createFunctionButton("C");
-        clrButton = createFunctionButton("A/C");
-        percentageButton = createFunctionButton("%");
-        posNegButton = createFunctionButton("-/+");
 
-        // Assign action commands
-        addButton.setActionCommand("+");
-        subButton.setActionCommand("-");
-        multButton.setActionCommand("*");
-        divButton.setActionCommand("/");
-        decButton.setActionCommand(".");
-        equButton.setActionCommand("=");
-        delButton.setActionCommand("DEL");
-        clrButton.setActionCommand("CLR");
-        percentageButton.setActionCommand("%");
-        posNegButton.setActionCommand("POSNEG");
-
-
-        // Add action listeners to the function buttons
-        functionButtons = new JButton[] {
-            addButton, subButton, multButton, divButton,
-            decButton, equButton, delButton, clrButton,
-            percentageButton, posNegButton
-        };
 
 
         // For loop to create number buttons 0-9
