@@ -26,14 +26,17 @@ public class Calculator extends JFrame implements ActionListener{
     // declared for the arithmetix symbols
     private final JButton addButton, subButton, multButton, divButton;
     private final JButton decButton, equButton, delButton, clrButton;
+    private final JButton posNegButton, percentageButton; 
 
     // Button labels for the calculator grid
     private static final String[] BUTTON_LABELS = {
+
         "CLR", "POSNEG", "%", "+",
         "1", "2", "3", "-",
         "4", "5", "6", "*",
         "7", "8", "9", "/",
         ".", "0", "=", "DEL"
+
     };
 
 
@@ -64,6 +67,7 @@ public class Calculator extends JFrame implements ActionListener{
         historyField.setBorder(BorderFactory.createEmptyBorder());
         historyField.setForeground(new Color(255, 153, 51));
         historyField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        historyField.setEditable(false);
         historyField.setLineWrap(true);
         historyField.setWrapStyleWord(true);
 
@@ -98,7 +102,7 @@ public class Calculator extends JFrame implements ActionListener{
 
         // Add buttons to the panel in the desired order
         panel.add(clrButton);
-        panel.add(PosNegButton);
+        panel.add(posNegButton);
         panel.add(percentageButton);
         panel.add(addButton);
         panel.add(numberButtons[1]);
@@ -152,6 +156,12 @@ public class Calculator extends JFrame implements ActionListener{
         button.addActionListener(this);
         return button;
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TODO Auto-generated method stub
+        calc.handleAction(e);
     }
 
 
