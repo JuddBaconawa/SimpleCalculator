@@ -98,7 +98,7 @@ public class Calculator extends JFrame implements ActionListener{
 
         // Add buttons to the panel in the desired order
         panel.add(clrButton);
-        panel.add(POSNEGButton);
+        panel.add(PosNegButton);
         panel.add(percentageButton);
         panel.add(addButton);
         panel.add(numberButtons[1]);
@@ -127,6 +127,7 @@ public class Calculator extends JFrame implements ActionListener{
         add(historyField);
         add(textField);
         
+        setVisible(true);
 
     }
 
