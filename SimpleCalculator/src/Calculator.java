@@ -20,6 +20,13 @@ public class Calculator extends JFrame implements ActionListener{
     // Logic Handler
     private final Calculations calc;
 
+    private final JButton[] numberButtons = new JButton[10];    // numbers
+    private final JButton[] functionButtons = new JButton[8];   //Arithmetic Symbols
+
+    // declared for the arithmetix symbols
+    private final JButton addButton, subButton, multButton, divButton;
+    private final JButton decButton, equButton, delButton, clrButton;
+
     // Button labels for the calculator grid
     private static final String[] BUTTON_LABELS = {
         "CLR", "POSNEG", "%", "+",
@@ -74,7 +81,8 @@ public class Calculator extends JFrame implements ActionListener{
         textField.setEditable(false);       //so the user cant type in
         textField.setHorizontalAlignment(JTextField.RIGHT); //text aligns to the right
 
-
+        // Logic Handler
+        calc = new Calculations(textField, historyField);
 
 
         // For loop to create number buttons 0-9
@@ -90,7 +98,7 @@ public class Calculator extends JFrame implements ActionListener{
 
         // Add buttons to the panel in the desired order
         panel.add(clrButton);
-        panel.add(posNegButton);
+        panel.add(POSNEGButton);
         panel.add(percentageButton);
         panel.add(addButton);
         panel.add(numberButtons[1]);
