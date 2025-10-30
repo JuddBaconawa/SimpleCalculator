@@ -29,7 +29,7 @@ public class Calculator extends JFrame implements ActionListener{
     private final JButton posNegButton, percentageButton; 
 
     // Button labels for the calculator grid
-    private static final String[] BUTTON_LABELS = {
+    private static final String[] BUTTON_LAYOUT = {
 
         "CLR", "POSNEG", "%", "+",
         "1", "2", "3", "-",
@@ -92,6 +92,16 @@ public class Calculator extends JFrame implements ActionListener{
         for(int i = 0; i<10; i++) {
             numberButtons[i] = createNumberButton(String.valueOf(i));  // convert int to string
         }
+
+        // create function buttons
+        String[] ops = {"+", "-", "*", "/", ".", "=", "DEL", "POSNEG", "%"};
+        for (int i = 0; i < ops.length; i++) {
+            functionButtons[i] = createFunctionButton(ops[i]);
+            functionButtons[i].setActionCommand(ops[i]);
+        }
+
+        // Assign name and references
+
         
 
         // Create a panel to hold the buttons in a grid layout
