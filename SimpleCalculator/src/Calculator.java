@@ -21,7 +21,7 @@ public class Calculator extends JFrame implements ActionListener{
     private final Calculations calc;
 
     private final JButton[] numberButtons = new JButton[10];    // numbers
-    private final JButton[] functionButtons = new JButton[8];   //Arithmetic Symbols
+    private final JButton[] functionButtons = new JButton[10];   //Arithmetic Symbols
 
     // declared for the arithmetix symbols
     private final JButton addButton, subButton, multButton, divButton;
@@ -94,13 +94,23 @@ public class Calculator extends JFrame implements ActionListener{
         }
 
         // create function buttons
-        String[] ops = {"+", "-", "*", "/", ".", "=", "DEL", "POSNEG", "%"};
+        String[] ops = {"+", "-", "*", "/", ".", "=", "DEL", "CLR", "POSNEG", "%"};
         for (int i = 0; i < ops.length; i++) {
             functionButtons[i] = createFunctionButton(ops[i]);
             functionButtons[i].setActionCommand(ops[i]);
         }
 
         // Assign name and references
+        addButton = functionButtons[0];
+        subButton = functionButtons[1];
+        multButton       = functionButtons[2];
+        divButton        = functionButtons[3];
+        decButton        = functionButtons[4];
+        equButton        = functionButtons[5];
+        delButton        = functionButtons[6];
+        clrButton        = functionButtons[7];
+        posNegButton     = functionButtons[8];
+        percentageButton = functionButtons[9];
 
         
 
@@ -113,17 +123,17 @@ public class Calculator extends JFrame implements ActionListener{
         // Add buttons to the panel in the desired order
         for (String label : BUTTON_LAYOUT) {
             switch (label) {
-                case "CLR" -> panel.add(clrButton);
-                case "POSNEG" -> panel.add(posNegButton);
-                case "%" -> panel.add(percentageButton);
-                case "+" -> panel.add(addButton);
-                case "-" -> panel.add(subButton);
-                case "*" -> panel.add(multButton);
-                case "/" -> panel.add(divButton);
-                case "." -> panel.add(decButton);
-                case "=" -> panel.add(equButton);
-                case "DEL" -> panel.add(delButton);
-                default -> panel.add(numberButtons[Integer.parseInt(label)]);
+                case "CLR": panel.add(clrButton); break;
+                case "POSNEG": panel.add(posNegButton); break;
+                case "%": panel.add(percentageButton); break;
+                case "+": panel.add(addButton); break;
+                case "-": panel.add(subButton); break;
+                case "*": panel.add(multButton); break;
+                case "/": panel.add(divButton); break;
+                case ".": panel.add(decButton); break;
+                case "=": panel.add(equButton); break;
+                case "DEL": panel.add(delButton); break;
+                default: panel.add(numberButtons[Integer.parseInt(label)]); break;
             }
         }
         
