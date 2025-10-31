@@ -10,13 +10,17 @@ import java.awt.event.*;
 //Calculation class
 public class Calculations {
 
-    JTextArea historyField;
-    JTextField textField;
+    // display components for the calculator
+    private final JTextArea historyField;
+    private final JTextField textField;
 
-    double num1 = 0, num2 = 0, result = 0;
-    char operator;
-    boolean justCalculated = false;
-    StringBuilder history = new StringBuilder();
+    // numbers and operator storage
+    private double num1 = 0, num2 = 0, result = 0;
+    private char operator;
+
+
+    private boolean justCalculated = false;
+    private final StringBuilder history = new StringBuilder();
 
     public Calculations(JTextField textField, JTextArea historyField) {
         this.textField = textField;
@@ -48,15 +52,21 @@ public class Calculations {
     // ---------------------------------
     private void handleNumber(String num) {
         if (justCalculated) {
-            textField.setText("");
+            textField.setText(num);
+            history.setLength(0);
+            history.append(num);
             justCalculated = false;
+            updateHistory();
+            return;
         }
 
+        //appens the number to textfield and historyfield
         textField.setText(textField.getText() + num);
         history.append(num);
         updateHistory();
     }
 
+    // adds decimal
     private void handleDecimal() {
         String current = textField.getText();
         if (!current.contains(".")) {
@@ -74,6 +84,7 @@ public class Calculations {
         history.append(" ").append(op).append(" ");
         updateHistory();
         textField.setText("");
+        justCalculated = false; // reset flag
     }
 
     private void handleEquals() {
@@ -95,6 +106,8 @@ public class Calculations {
 
         double value = Double.parseDouble(textField.getText()) / 100;
         textField.setText(String.valueOf(result));
+
+
         history.append("%");
         updateHistory();
        
@@ -117,9 +130,26 @@ public class Calculations {
     private void handlePosNeg() {
         if (textField.getText().isEmpty()) return;
 
+        // flips the number
         double value = Double.parseDouble(textField.getText()) * -1;
+
+        //updates the text field
         textField.setText(String.valueOf(value));
-        updateHistoryFieldWithValue(value);
+
+        //update history in place
+
+        int lastIndex = history.length() - 1;
+
+        //removes digits of the curren number at the end
+        while (lastIndex >= 0 && (Character.isDigit(history.charAt(lastIndex)) || history.charAt(lastIndex) == '.')) {
+            lastIndex--;
+        }
+
+        // keep everything before the number, then append the new signed number
+        String before = history.substring(0, lastIndex + 1);
+        history.setLength(0); // clear
+        history.append(before).append(value); // append flipped number
+        historyField.setText(history.toString()); // show in history
     }
 
     private void handleClear() {
